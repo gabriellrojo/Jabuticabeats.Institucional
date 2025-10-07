@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/header";
+import localFont from "next/font/local";
+import Footer from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,6 +13,28 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+
+export const satoshiRegular = localFont({
+  src: "../public/fonts/Satoshi-Regular.woff2",
+  variable: "--font-satoshi-regular",
+  weight: "400",
+  display: "swap",
+});
+
+export const satoshiBold = localFont({
+  src: "../public/fonts/Satoshi-Bold.woff2",
+  variable: "--font-satoshi-bold",
+  weight: "700",
+  display: "swap",
+});
+
+export const satoshiThin = localFont({
+  src: "../public/fonts/Satoshi-Light.woff2", 
+  variable: "--font-satoshi-thin",
+  weight: "300",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -23,11 +48,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${satoshiRegular.variable} ${satoshiBold.variable} ${satoshiThin.variable} antialiased`}
       >
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
